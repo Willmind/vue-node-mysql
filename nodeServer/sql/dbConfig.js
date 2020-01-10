@@ -1,5 +1,5 @@
 // 封装操作数据库的通用api
-const mysql=require('mysql')
+const mysql=require('mysql');
 
 exports.base=(sql,data,callback)=>{
     //创建数据库连接
@@ -7,7 +7,7 @@ exports.base=(sql,data,callback)=>{
         host:'localhost',
         user:'root',
         password:'123456',
-        database:'world'
+        database:'user'
     });
     //执行连接操作
     connection.connect();

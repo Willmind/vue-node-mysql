@@ -1,15 +1,12 @@
-var express = require('express');
-var router = express.Router();
-// const service=require('./../serviece')
+const express = require('express');
+const router = express.Router();
+const service = require('./../service/userService')
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 
-// router.post('/list',service.userList);
+router.post('/login',service.login)
 
 //接口暴露，要不无法访问此接口
 module.exports = router;

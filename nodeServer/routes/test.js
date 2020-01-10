@@ -9,8 +9,8 @@ var connection=mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT*FROM user WHERE id=1',function (error,results,fields) {
+connection.query('SELECT*FROM sys_user WHERE name="admin"',function (error,results,fields) {
     if(error) throw error;
-    console.log('the solution is:',results[0].name)
+    console.log('the solution is:',results[0].password)
     console.log('数据库连接成功！')
 })
