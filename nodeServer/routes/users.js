@@ -7,6 +7,10 @@ const service = require('./../service/userService')
 
 
 router.post('/login',service.login)
+router.post('/register',service.register)
+router.post('/userList',service.userList)
+
+
 
 //接口暴露，要不无法访问此接口
 module.exports = router;
