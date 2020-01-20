@@ -65,6 +65,24 @@ exports.userList = (req, res,next) => {
     })
 }
 
+//列表删除
+exports.deleteUser=(req,res)=>{
+    console.log(req.body.name);
+
+    let sql=`DELETE FROM sys_user where name='${req.body.name}'`
+    let data=[]
+    db.base(sql,data,(response)=>{
+        res.json({
+            status: '1',
+            msg: '11111',
+            result: response
+        });
+
+    })
+
+
+}
+
 
 
 
