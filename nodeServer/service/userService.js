@@ -67,9 +67,9 @@ exports.userList = (req, res,next) => {
 
 //列表删除
 exports.deleteUser=(req,res)=>{
-    console.log(req.body.name);
+    console.log(req.body.id);
 
-    let sql=`DELETE FROM sys_user where name='${req.body.name}'`
+    let sql=`DELETE FROM sys_user where id='${req.body.id}'`
     let data=[]
     db.base(sql,data,(response)=>{
         res.json({
