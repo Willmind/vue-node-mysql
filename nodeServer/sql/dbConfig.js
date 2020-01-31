@@ -7,7 +7,7 @@ exports.base=(sql,data,callback)=>{
         host:'localhost',
         user:'root',
         password:'123456',
-        database:'user'
+        database:'vue-admin-template'
     });
     //执行连接操作
     connection.connect();

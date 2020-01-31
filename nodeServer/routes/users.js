@@ -7,9 +7,9 @@ const service = require('./../service/userService')
 
 
 router.post('/login',service.login)
-router.post('/register',service.register)
-router.post('/userList',service.userList)
-router.post('/deleteUser',service.deleteUser)
+router.post('/addDormInteriorList',service.addDormInteriorList)
+router.post('/dormitoryInteriorList',service.dormitoryInteriorList)
+router.post('/delDormInteriorList',service.delDormInteriorList)
 
 
 

@@ -22,31 +22,32 @@ exports.login = (req, res, next) => {
     })
 
 }
-//用户注册
-exports.register = (req, res, next) => {
-    let registerForm = req.body.registerForm;
-    let sql = 'INSERT INTO sys_user(name,password) VALUES(?,?)';
-    let data = [registerForm.username, registerForm.password]
+//宿舍内务列表新增
+exports.addDormInteriorList = (req, res, next) => {
+    let addData=req.body
+    console.log(addData.rate);
+    let sql = 'INSERT INTO dormitoryinterior(domNum,checkPerson,score,time,buildingNum) VALUES(?,?,?,?,?)';
+    let data = [addData.domNum, addData.checkPerson,addData.rate,addData.time,addData.buildingNum]
     db.base(sql, data, (response) => {
         console.log(response);
         if (response.length == 0) {
             res.json({
                 status: '1',
-                msg: '注册失败',
+                msg: '新增失败',
                 result: ''
             });
         } else {
             res.json({
                 status: '0',
-                msg: '注册成功',
+                msg: '新增成功',
             });
         }
     })
 }
 
- //列表
-exports.userList = (req, res,next) => {
-    let sql = 'select * from sys_user'
+ //宿舍内务列表展示
+exports.dormitoryInteriorList = (req, res,next) => {
+    let sql = 'select * from dormitoryinterior'
     let data=[]
     db.base(sql, data,(response) => {
         if (response.length == 0) {
@@ -65,16 +66,15 @@ exports.userList = (req, res,next) => {
     })
 }
 
-//列表删除
-exports.deleteUser=(req,res)=>{
-    console.log(req.body.id);
-
-    let sql=`DELETE FROM sys_user where id='${req.body.id}'`
+//宿舍列表删除
+exports.delDormInteriorList=(req,res)=>{
+    console.log(req.body.cid);
+    let sql=`DELETE FROM dormitoryinterior where cid='${req.body.cid}'`
     let data=[]
     db.base(sql,data,(response)=>{
         res.json({
             status: '1',
-            msg: '11111',
+            msg: '操作成功',
             result: response
         });
 
