@@ -5,8 +5,8 @@ const service = require('./../service/userService')
 
 /* GET users listing. */
 
-
-router.post('/login',service.login)
+//宿舍内务列表
+router.post('/uploadDormInterior',service.uploadDormInterior)
 router.post('/addDormInteriorList',service.addDormInteriorList)
 router.post('/dormitoryInteriorList',service.dormitoryInteriorList)
 router.post('/delDormInteriorList',service.delDormInteriorList)

@@ -1,10 +1,11 @@
 const db = require('./../sql/dbConfig')
 
-//用户登录
-exports.login = (req, res, next) => {
-    let loginForm = req.body.loginForm;
-    let sql = 'select * from sys_user where name=? and password=?';
-    let data = [loginForm.username, loginForm.password];
+//宿舍内务列表详情页
+exports.uploadDormInterior = (req, res, next) => {
+    console.log(req.body.cid);
+    let cid = req.body.cid;
+    let sql = 'select * from dormitoryinterior where cid=?';
+    let data = [cid];
     db.base(sql, data, (response) => {
         if (response.length == 0) {
             res.json({
@@ -47,7 +48,14 @@ exports.addDormInteriorList = (req, res, next) => {
 
  //宿舍内务列表展示
 exports.dormitoryInteriorList = (req, res,next) => {
-    let sql = 'select * from dormitoryinterior'
+    let buildingNum=req.body.buildingNum
+    let domNum=req.body.domNum
+    let time=req.body.time
+    let sql = `SELECT * FROM dormitoryinterior WHERE buildingNum LIKE '%${buildingNum}%' AND domNum LIKE '%${domNum}%'`
+    if(time!==''){
+        sql=sql+`AND time ='${time}'`
+    }
+
     let data=[]
     db.base(sql, data,(response) => {
         if (response.length == 0) {
