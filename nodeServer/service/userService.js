@@ -87,8 +87,23 @@ exports.delDormInteriorList=(req,res)=>{
         });
 
     })
+}
 
+//宿舍列表更新编辑
+exports.updateDormInteriorList=(req,res)=>{
+    let updateData=req.body
+    console.log(req.body);
+    return
+    let sql=`UPDATE dormitoryinterior SET domNum=?,checkPerson=?,score=?,time=?,buildingNum=? WHERE cid=?`
+    let data=[updateData.domNum,updateData.checkPerson,updateData.score,updateData.domNum,updateData.domNum]
+    db.base(sql,data,(response)=>{
+        res.json({
+            status: '1',
+            msg: '操作成功',
+            result: response
+        });
 
+    })
 }
 
 

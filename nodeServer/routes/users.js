@@ -10,6 +10,8 @@ router.post('/uploadDormInterior',service.uploadDormInterior)
 router.post('/addDormInteriorList',service.addDormInteriorList)
 router.post('/dormitoryInteriorList',service.dormitoryInteriorList)
 router.post('/delDormInteriorList',service.delDormInteriorList)
+router.post('/updateDormInteriorList',service.updateDormInteriorList)
+
 
 
 
