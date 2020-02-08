@@ -1,5 +1,9 @@
 const db = require('./../sql/dbConfig')
 
+function genID(length){
+    return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
+}
+
 //宿舍内务列表详情页
 exports.uploadDormInterior = (req, res, next) => {
     console.log(req.body.cid);
@@ -103,6 +107,30 @@ exports.updateDormInteriorList=(req,res)=>{
             result: response
         });
 
+    })
+}
+
+//教室使用申请列表新增
+exports.addClassFormList = (req, res, next) => {
+    let addData=req.body
+    let uuid= genID(8)
+    console.log(addData);
+    let sql = 'INSERT INTO classForm(rid,class,phone,teacher,student,organization,teacherPhone,week,section,classroomType,whichDay,number,classRoom,text) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    let data = [uuid, addData.class,addData.phone,addData.teacher,addData.student,addData.organization,addData.teacherPhone,addData.week,addData.section,addData.classroomType,addData.whichDay,addData.number,addData.classRoom,addData.text,]
+    db.base(sql, data, (response) => {
+        console.log(response);
+        if (response.length == 0) {
+            res.json({
+                status: '1',
+                msg: '新增失败',
+                result: ''
+            });
+        } else {
+            res.json({
+                status: '0',
+                msg: '新增成功',
+            });
+        }
     })
 }
 

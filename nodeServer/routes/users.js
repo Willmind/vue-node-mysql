@@ -12,6 +12,10 @@ router.post('/dormitoryInteriorList',service.dormitoryInteriorList)
 router.post('/delDormInteriorList',service.delDormInteriorList)
 router.post('/updateDormInteriorList',service.updateDormInteriorList)
 
+//新增教室列表
+router.post('/addClassFormList',service.addClassFormList)
+
+
 
 
 
