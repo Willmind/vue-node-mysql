@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const service = require('./../service/userService')
+const classService=require('./../service/classFormService')
 
 
 /* GET users listing. */
@@ -13,7 +14,10 @@ router.post('/delDormInteriorList',service.delDormInteriorList)
 router.post('/updateDormInteriorList',service.updateDormInteriorList)
 
 //新增教室列表
-router.post('/addClassFormList',service.addClassFormList)
+router.post('/addClassFormList',classService.addClassFormList)
+router.post('/classFormList',classService.classFormList)
+router.post('/classFormQueryOne',classService.classFormQueryOne)
+
 
 
 
