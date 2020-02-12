@@ -17,6 +17,8 @@ router.post('/updateDormInteriorList',service.updateDormInteriorList)
 router.post('/addClassFormList',classService.addClassFormList)
 router.post('/classFormList',classService.classFormList)
 router.post('/classFormQueryOne',classService.classFormQueryOne)
+router.post('/delclassFormList',classService.delclassFormList)
+
 
 
 

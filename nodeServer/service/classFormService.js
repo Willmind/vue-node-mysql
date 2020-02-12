@@ -51,17 +51,13 @@ exports.addClassFormList = (req, res, next) => {
 
 
 
-
+//
 //教室使用申请列表展示
 exports.classFormList = (req, res,next) => {
-    // let buildingNum=req.body.buildingNum
-    // let domNum=req.body.domNum
-    // let time=req.body.time
+    // console.log(req.body.class);
+    // let classData=req.body.class
+    // let student=req.body.student
     let sql = `SELECT * FROM classform`
-    // if(time!==''){
-    //     sql=sql+`AND time ='${time}'`
-    // }
-
     let data=[]
     db.base(sql, data,(response) => {
         if (response.length == 0) {
@@ -80,7 +76,7 @@ exports.classFormList = (req, res,next) => {
     })
 }
 
-//教室使用申请列表详情展示
+//教室使用申请列表详情展示Detail
 exports.classFormQueryOne = (req, res,next) => {
     // let buildingNum=req.body.buildingNum
     // let domNum=req.body.domNum
@@ -106,5 +102,21 @@ exports.classFormQueryOne = (req, res,next) => {
                 result: response[0],
             });
         }
+    })
+}
+
+//教室列表删除
+exports.delclassFormList=(req,res)=>{
+    let delRids=req.body.delRids
+    console.log(delRids);
+    let sql=`DELETE FROM classform where rid in (${delRids})`
+    let data=[]
+    db.base(sql,data,(response)=>{
+        console.log(response);
+        res.json({status: '1',
+            msg: '操作成功',
+            result: response
+        });
+
     })
 }
