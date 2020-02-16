@@ -5,6 +5,9 @@ const classService=require('./../service/classFormService')
 
 
 /* GET users listing. */
+// 用户登录
+router.post('/getUserData',service.getUserData)
+
 
 //宿舍内务列表
 router.post('/uploadDormInterior',service.uploadDormInterior)
@@ -12,6 +15,7 @@ router.post('/addDormInteriorList',service.addDormInteriorList)
 router.post('/dormitoryInteriorList',service.dormitoryInteriorList)
 router.post('/delDormInteriorList',service.delDormInteriorList)
 router.post('/updateDormInteriorList',service.updateDormInteriorList)
+
 
 //新增教室列表
 router.post('/addClassFormList',classService.addClassFormList)
