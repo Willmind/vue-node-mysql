@@ -7,6 +7,9 @@ const classService = require('./../service/classFormService')
 /* GET users listing. */
 //用户登录
 router.post('/getUserData', service.getUserData)
+//用户注册
+router.post('/addUser', service.addUser)
+
 //退出登录
 router.post('/doLogout', service.doLogout)
 

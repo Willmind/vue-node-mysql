@@ -1,5 +1,9 @@
 const db = require('./../sql/dbConfig')
 
+function genID(length){
+    return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
+}
+
 //登陆
 exports.getUserData = (req, res, next) => {
 
@@ -34,6 +38,31 @@ exports.getUserData = (req, res, next) => {
         }
     })
 
+}
+
+//用户注册
+exports.addUser = (req, res, next) => {
+    let addData = req.body
+    let rid= genID(8)
+    let adminPermission='0'
+    console.log(addData);
+    let sql = 'INSERT INTO accountform(rid,account,password,adminPermission) VALUES(?,?,?,?)';
+    let data = [rid,addData.registerAccount, addData.registerPassword,adminPermission]
+    db.base(sql, data, (response) => {
+        console.log(response);
+        if (response.length == 0) {
+            res.json({
+                status: '1',
+                msg: '新增失败',
+                result: ''
+            });
+        } else {
+            res.json({
+                status: '0',
+                msg: '新增成功',
+            });
+        }
+    })
 }
 //退出登录
 exports.doLogout=function(req,res,next){
