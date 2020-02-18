@@ -42,28 +42,77 @@ exports.getUserData = (req, res, next) => {
 
 //用户注册
 exports.addUser = (req, res, next) => {
-    let addData = req.body
-    let rid= genID(8)
-    let adminPermission='0'
+    var addData = req.body
     console.log(addData);
-    let sql = 'INSERT INTO accountform(rid,account,password,adminPermission) VALUES(?,?,?,?)';
-    let data = [rid,addData.registerAccount, addData.registerPassword,adminPermission]
+    let sql = `SELECT * FROM accountform where account='${addData.registerAccount}'`
+    let data=[]
+
     db.base(sql, data, (response) => {
         console.log(response);
         if (response.length == 0) {
-            res.json({
-                status: '1',
-                msg: '新增失败',
-                result: ''
-            });
+            let rid= genID(8)
+            let adminPermission='0'
+            let sql2 = 'INSERT INTO accountform(rid,account,password,adminPermission) VALUES(?,?,?,?)';
+            let data2 = [rid,addData.registerAccount, addData.registerPassword,adminPermission]
+
+            db.base(sql2, data2, (response2) => {
+                console.log(response2);
+                if (response2.length == 0) {
+                    res.json({
+                        status: '1',
+                        msg: '新增失败',
+                        result: ''
+                    });
+                } else {
+                    res.json({
+                        status: '2',
+                        msg: '新增成功',
+                    });
+                }
+            })
+
+
+
         } else {
             res.json({
                 status: '0',
-                msg: '新增成功',
+                msg: '查询成功',
             });
         }
     })
+
+
 }
+//用户密码修改
+exports.updateUserPassword = (req, res) => {
+    let updateData = req.body
+    let passwordForm=updateData.passwordForm
+    let sql = `SELECT * FROM accountform where rid='${updateData.rid}'`
+    let data=[]
+    db.base(sql, data, (response) => {
+        console.log(response[0].password);
+        //密码确认成功
+
+        if(passwordForm.oldPassword===response[0].password){
+            let sql2 = `UPDATE accountform SET password=? WHERE rid=?`
+            let data2 = [passwordForm.newPassword,updateData.rid]
+            db.base(sql2, data2, (response) => {
+                res.json({
+                    status: '1',
+                    msg: '操作成功',
+                });
+            })
+        }else{
+            res.json({
+                status: '0',
+                msg: '密码错误',
+            });
+        }
+
+    })
+
+}
+
 //退出登录
 exports.doLogout=function(req,res,next){
     console.log(req);

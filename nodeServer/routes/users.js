@@ -9,6 +9,8 @@ const classService = require('./../service/classFormService')
 router.post('/getUserData', service.getUserData)
 //用户注册
 router.post('/addUser', service.addUser)
+//用户密码修改
+router.post('/updateUserPassword', service.updateUserPassword)
 
 //退出登录
 router.post('/doLogout', service.doLogout)
