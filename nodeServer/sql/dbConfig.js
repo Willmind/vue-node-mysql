@@ -1,6 +1,7 @@
 // 封装操作数据库的通用api
 const mysql=require('mysql');
 
+
 exports.base=(sql,data,callback)=>{
     //创建数据库连接
     const connection=mysql.createConnection({
