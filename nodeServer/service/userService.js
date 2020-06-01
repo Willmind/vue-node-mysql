@@ -1,4 +1,4 @@
-const db = require('./../sql/dbConfig')
+    const db = require('./../sql/dbConfig')
 
 function genID(length){
     return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
